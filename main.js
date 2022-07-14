@@ -18,6 +18,7 @@ const app = {
     currentIndex: 0,
     onPlaying: false,
     isRandom: false,
+    isRepeat: false,
     songs: [
         {
             name: "Click Pow Get Down",
@@ -151,7 +152,39 @@ const app = {
         randomBtn.onclick = function(){
             app.isRandom = !app.isRandom;
             this.classList.toggle("active");
-            console.log(app.isRandom);
+            app.isRepeat = !app.isRandom;
+            repeatBtn.classList.remove("active", app.isRandom);
+        }
+        repeatBtn.onclick = function(){
+            app.isRepeat = !app.isRepeat;
+            this.classList.toggle("active");
+            app.isRandom = !app.isRepeat;
+            randomBtn.classList.remove("active", app.isRepeat);
+        }
+        audio.onended = function(){
+            if(app.isRepeat){
+                audio.play();
+            }else{
+                nextBtn.click();
+            }
+        }
+        playlist.onclick = function(e){
+            let activeElement = $(".song.active");
+            let element = e.target.closest(".song:not(.active)");
+            let optionElement = e.target.closest(".song:not(.option)");
+            if(element || optionElement){
+                if(element){
+                    activeElement.classList.remove("active");
+                    element.classList.add("active");
+                    app.currentIndex = Number(element.dataset.index);
+                    app.loadCurrentSong();
+                    playBtn.click();
+                    audio.play();
+                }
+                if(optionElement){
+                    console.log("123");
+                }
+            }
         }
     },
     nextSong: function(){
