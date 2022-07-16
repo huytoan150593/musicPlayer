@@ -66,10 +66,45 @@ const app = {
             path: "./access/song7.mp3",
             image:
                 "https://a10.gaanacdn.com/gn_img/albums/YoEWlabzXB/oEWlj5gYKz/size_xxl_1586752323.webp"
+        },
+        {
+            name: "Click Pow Get Down 2",
+            singer: "Raftaar x Fortnite",
+            path: "./access/song1.mp3",
+            image: "https://i.ytimg.com/vi/jTLhQf5KJSc/maxresdefault.jpg"
+        },
+        {
+            name: "Tu Phir Se Aana 2",
+            singer: "Raftaar x Salim Merchant x Karma",
+            path: "./access/song2.mp3",
+            image:
+                "https://1.bp.blogspot.com/-kX21dGUuTdM/X85ij1SBeEI/AAAAAAAAKK4/feboCtDKkls19cZw3glZWRdJ6J8alCm-gCNcBGAsYHQ/s16000/Tu%2BAana%2BPhir%2BSe%2BRap%2BSong%2BLyrics%2BBy%2BRaftaar.jpg"
+        },
+        {
+            name: "Naachne Ka Shaunq 2",
+            singer: "Raftaar x Brobha V",
+            path: "./access/song3.mp3",
+            image: "https://i.ytimg.com/vi/QvswgfLDuPg/maxresdefault.jpg"
+        },
+        {
+            name: "Mantoiyat 2",
+            singer: "Raftaar x Nawazuddin Siddiqui",
+            path: "./access/song4.mp3",
+            image:
+                "https://a10.gaanacdn.com/images/song/39/24225939/crop_480x480_1536749130.jpg"
+        },
+        {
+            name: "Aage Chal 2",
+            singer: "Raftaar",
+            path: "./access/song5.mp3",
+            image:
+                "https://a10.gaanacdn.com/images/albums/72/3019572/crop_480x480_3019572.jpg"
         }
     ],
+    playedSongs: [],
     render: function () {
         const htmls = this.songs.map((song, index) => {
+            this.loadCurrentSong();
             return `
                             <div class="song ${index === this.currentIndex ? "active" : ""}" data-index="${index}">
                                 <div class="thumb"
@@ -92,6 +127,12 @@ const app = {
             get: function () {
                 return this.songs[this.currentIndex];
             }
+        })
+    },
+    scrollActiveSong: function(){
+        $(".song.active").scrollIntoView({
+            behavior: "smooth",
+            block: "center"
         })
     },
     loadCurrentSong: function () {
@@ -133,21 +174,33 @@ const app = {
             progress.value = Math.floor(audio.currentTime / audio.duration * 100);
         }
         progress.onchange = function(){
+            const isTouch = 'touchstart' || 'mousedown';
+            this.addEventListener(isTouch, () => {
+                audio.ontimeupdate = false;
+            })
             audio.currentTime = audio.duration / 100 * progress.value;
         }
         nextBtn.onclick = function(){
             if(app.isRandom){
                 app.randomSong();
+                app.playedSongs.push(app.currentIndex);
+                console.log(app.playedSongs)
             }else{
                 app.nextSong();
             }
+            app.render();
+            app.scrollActiveSong();
         }
         prevBtn.onclick = function(){
             if(app.isRandom){
                 app.randomSong();
+                app.playedSongs.push(app.currentIndex);
+                console.log(app.playedSongs)
             }else{
                 app.prevSong();
             }
+            app.render();
+            app.scrollActiveSong();
         }
         randomBtn.onclick = function(){
             app.isRandom = !app.isRandom;
@@ -182,7 +235,6 @@ const app = {
                     audio.play();
                 }
                 if(optionElement){
-                    console.log("123");
                 }
             }
         }
@@ -204,12 +256,24 @@ const app = {
         app.loadCurrentSong();
     },
     randomSong: function(){
-        let newIndex;
-        do {
-            newIndex = Math.floor(Math.random() * app.songs.length)
-        } while (newIndex === app.currentIndex);
-        this.currentIndex = newIndex;
-        this.loadCurrentSong();
+        const countSongs = app.songs.length;
+        let countPlayed = app.playedSongs.length;
+        if(countSongs === countPlayed){
+            app.playedSongs = [];
+        }
+        let newIndex = Math.floor(Math.random() * app.songs.length);
+        let checkSong = app.playedSongs.includes(newIndex);
+        let checkRepeat = newIndex === app.currentIndex ;
+        let checkBoolean = !checkSong && !checkRepeat;
+        console.log(`checkSong: ${checkSong} and checkRepeat: ${checkRepeat}`);
+        console.log(checkBoolean);
+        if(checkBoolean){
+            this.currentIndex = newIndex;
+            this.loadCurrentSong();
+            return;
+        }else{
+            app.randomSong();
+        }
     },
     start: function () {
         this.defineProperties();
