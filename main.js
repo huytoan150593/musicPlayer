@@ -1,6 +1,8 @@
 const $ = document.querySelector.bind(document);
 const $$ = document.querySelectorAll.bind(document);
 
+const PLAYER_STORAGE_KEY = "Music-option";
+
 const player = $(".player");
 const cd = $(".cd");
 const heading = $("header h2");
@@ -19,6 +21,21 @@ const app = {
     onPlaying: false,
     isRandom: false,
     isRepeat: false,
+    config: JSON.parse(localStorage.getItem(PLAYER_STORAGE_KEY)) || {},
+    setConfig: function(){
+        localStorage.setItem(PLAYER_STORAGE_KEY, JSON.stringify(app.config));
+    },
+    loadConfig: function(){
+        app.isRandom = app.config.isRandom;
+        app.isRepeat = app.config.isRepeat;
+        app.currentIndex = app.config.currentIndex || 0;
+        if(app.isRandom){
+            randomBtn.classList.add("active");
+        }
+        if(app.isRepeat){
+            repeatBtn.classList.add("active");
+        }
+    },
     songs: [
         {
             name: "Click Pow Get Down",
@@ -163,6 +180,8 @@ const app = {
                 player.classList.add("playing");
                 rotateAnimate.play();
                 app.onPlaying = true;
+                app.config.currentIndex = app.currentIndex;
+                app.setConfig();
             }
             audio.onpause = function() {
                 player.classList.remove("playing");
@@ -174,10 +193,11 @@ const app = {
             progress.value = Math.floor(audio.currentTime / audio.duration * 100);
         }
         progress.onchange = function(){
-            const isTouch = 'touchstart' || 'mousedown';
-            this.addEventListener(isTouch, () => {
-                audio.ontimeupdate = false;
-            })
+            // const isTouch = 'touchstart' || 'mousedown';
+            // app.addEventListener("mousedown", () => {
+            //     audio.ontimeupdate = false;
+            //     progress.onchange = false;
+            // })
             audio.currentTime = audio.duration / 100 * progress.value;
         }
         nextBtn.onclick = function(){
@@ -204,15 +224,19 @@ const app = {
         }
         randomBtn.onclick = function(){
             app.isRandom = !app.isRandom;
+            app.config.isRandom = app.isRandom;
+            app.setConfig();
             this.classList.toggle("active");
-            app.isRepeat = !app.isRandom;
-            repeatBtn.classList.remove("active", app.isRandom);
+            // app.isRepeat = !app.isRandom;
+            // repeatBtn.classList.remove("active", app.isRandom);
         }
         repeatBtn.onclick = function(){
             app.isRepeat = !app.isRepeat;
+            app.config.isRepeat = app.isRepeat
+            app.setConfig();
             this.classList.toggle("active");
-            app.isRandom = !app.isRepeat;
-            randomBtn.classList.remove("active", app.isRepeat);
+            // app.isRandom = !app.isRepeat;
+            // randomBtn.classList.remove("active", app.isRepeat);
         }
         audio.onended = function(){
             if(app.isRepeat){
@@ -265,8 +289,6 @@ const app = {
         let checkSong = app.playedSongs.includes(newIndex);
         let checkRepeat = newIndex === app.currentIndex ;
         let checkBoolean = !checkSong && !checkRepeat;
-        console.log(`checkSong: ${checkSong} and checkRepeat: ${checkRepeat}`);
-        console.log(checkBoolean);
         if(checkBoolean){
             this.currentIndex = newIndex;
             this.loadCurrentSong();
@@ -276,6 +298,7 @@ const app = {
         }
     },
     start: function () {
+        this.loadConfig();
         this.defineProperties();
         this.loadCurrentSong();
         this.handleEvent();
@@ -284,4 +307,6 @@ const app = {
 }
 
 app.start();
+
+
 
