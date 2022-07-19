@@ -66,7 +66,7 @@ const app = {
             name: "Ballad of a Doubtful Thought",
             singer: "Barefoot McCoy",
             path: "./access/Songs/Ballad_of_a_Doubtful_Thought_-_Barefoot_McCoy.mp3",
-            image: "./access/Thumbnails/Ballad of a Doubtful Thought"
+            image: "./access/Thumbnails/Ballad of a Doubtful Thought.jpeg"
         },
         {
             name: "Beyond the Sky",
