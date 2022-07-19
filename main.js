@@ -6,6 +6,7 @@ const PLAYER_STORAGE_KEY = "Music-option";
 const player = $(".player");
 const cd = $(".cd");
 const heading = $("header h2");
+const singer = $("header h3");
 const cdThumb = $(".cd-thumb");
 const audio = $("#audio");
 const playBtn = $(".btn-toggle-play");
@@ -38,85 +39,275 @@ const app = {
     },
     songs: [
         {
-            name: "Click Pow Get Down",
-            singer: "Raftaar x Fortnite",
-            path: "./access/song1.mp3",
-            image: "https://i.ytimg.com/vi/jTLhQf5KJSc/maxresdefault.jpg"
+            name: "All for Nothing",
+            singer: "Anthem of Rain",
+            path: "./access/Songs/All_For_Nothing_-_Anthem_of_Rain.mp3",
+            image: "./access/Thumbnails/Allfornothing.jpeg"
         },
         {
-            name: "Tu Phir Se Aana",
-            singer: "Raftaar x Salim Merchant x Karma",
-            path: "./access/song2.mp3",
-            image:
-                "https://1.bp.blogspot.com/-kX21dGUuTdM/X85ij1SBeEI/AAAAAAAAKK4/feboCtDKkls19cZw3glZWRdJ6J8alCm-gCNcBGAsYHQ/s16000/Tu%2BAana%2BPhir%2BSe%2BRap%2BSong%2BLyrics%2BBy%2BRaftaar.jpg"
+            name: "Always Ever Be",
+            singer: "Cole Powell",
+            path: "./access/Songs/Always_Ever_Be_(2021_24-bit_Master)_-_Cole_Powell.mp3",
+            image: "./access/Thumbnails/Always ever be.jpeg"
         },
         {
-            name: "Naachne Ka Shaunq",
-            singer: "Raftaar x Brobha V",
-            path: "./access/song3.mp3",
-            image: "https://i.ytimg.com/vi/QvswgfLDuPg/maxresdefault.jpg"
+            name: "A moment in Time",
+            singer: "Graham Coe",
+            path: "./access/Songs/A_Moment_in_Time_-_Graham_Coe.mp3",
+            image: "./access/Thumbnails/A moment in time.jpeg"
         },
         {
-            name: "Mantoiyat",
-            singer: "Raftaar x Nawazuddin Siddiqui",
-            path: "./access/song4.mp3",
-            image:
-                "https://a10.gaanacdn.com/images/song/39/24225939/crop_480x480_1536749130.jpg"
+            name: "Baby Bird",
+            singer: "LZYBY",
+            path: "./access/Songs/Baby_Bird_-_LZYBY.mp3",
+            image: "./access/Thumbnails/Baby bird.jpeg"
         },
         {
-            name: "Aage Chal",
-            singer: "Raftaar",
-            path: "./access/song5.mp3",
-            image:
-                "https://a10.gaanacdn.com/images/albums/72/3019572/crop_480x480_3019572.jpg"
+            name: "Ballad of a Doubtful Thought",
+            singer: "Barefoot McCoy",
+            path: "./access/Songs/Ballad_of_a_Doubtful_Thought_-_Barefoot_McCoy.mp3",
+            image: "./access/Thumbnails/Ballad of a Doubtful Thought"
         },
         {
-            name: "Damn",
-            singer: "Raftaar x kr$na",
-            path: "./access/song6.mp3",
-            image:
-                "https://a10.gaanacdn.com/images/song/39/24225939/crop_480x480_1536749130.jpg"
+            name: "Beyond the Sky",
+            singer: "Joshwoodward",
+            path: "./access/Songs/Beyond_the_Sky_-_joshwoodward.mp3",
+            image: "./access/Thumbnails/Beyond the Sky.jpeg"
         },
         {
-            name: "Feeling You",
-            singer: "Raftaar x Harjas",
-            path: "./access/song7.mp3",
-            image:
-                "https://a10.gaanacdn.com/gn_img/albums/YoEWlabzXB/oEWlj5gYKz/size_xxl_1586752323.webp"
+            name: "Blood Brothers",
+            singer: "The Manky Gnu",
+            path: "./access/Songs/Blood_Brothers_-_The_Manky_Gnu.mp3",
+            image: "./access/Thumbnails/Blood brothers.jpeg"
         },
         {
-            name: "Click Pow Get Down 2",
-            singer: "Raftaar x Fortnite",
-            path: "./access/song1.mp3",
-            image: "https://i.ytimg.com/vi/jTLhQf5KJSc/maxresdefault.jpg"
+            name: "Forest Lullaby",
+            singer: "LESFM",
+            path: "./access/Songs/Forest Lullaby.mp3",
+            image: "./access/Thumbnails/Forest Lullaby.jpeg"
         },
         {
-            name: "Tu Phir Se Aana 2",
-            singer: "Raftaar x Salim Merchant x Karma",
-            path: "./access/song2.mp3",
-            image:
-                "https://1.bp.blogspot.com/-kX21dGUuTdM/X85ij1SBeEI/AAAAAAAAKK4/feboCtDKkls19cZw3glZWRdJ6J8alCm-gCNcBGAsYHQ/s16000/Tu%2BAana%2BPhir%2BSe%2BRap%2BSong%2BLyrics%2BBy%2BRaftaar.jpg"
+            name: "Braided Heart",
+            singer: "Luke Davids",
+            path: "./access/Songs/Braided_Heart_-_Luke_Davids.mp3",
+            image: "./access/Thumbnails/Braided Heart.jpeg"
         },
         {
-            name: "Naachne Ka Shaunq 2",
-            singer: "Raftaar x Brobha V",
-            path: "./access/song3.mp3",
-            image: "https://i.ytimg.com/vi/QvswgfLDuPg/maxresdefault.jpg"
+            name: "Caught on the Wire",
+            singer: "Berkley_Mallin",
+            path: "./access/Songs/Caught_on_the_Wire_-_Berkley_Mallin.mp3",
+            image: "./access/Thumbnails/Caught on the Wire.jpeg"
         },
         {
-            name: "Mantoiyat 2",
-            singer: "Raftaar x Nawazuddin Siddiqui",
-            path: "./access/song4.mp3",
-            image:
-                "https://a10.gaanacdn.com/images/song/39/24225939/crop_480x480_1536749130.jpg"
+            name: "Come Along",
+            singer: "Avi Rosenfeld",
+            path: "./access/Songs/Come_Along_-_Avi_Rosenfeld.mp3",
+            image: "./access/Thumbnails/Come Along.jpeg"
         },
         {
-            name: "Aage Chal 2",
-            singer: "Raftaar",
-            path: "./access/song5.mp3",
-            image:
-                "https://a10.gaanacdn.com/images/albums/72/3019572/crop_480x480_3019572.jpg"
-        }
+            name: "Don't Worry",
+            singer: "Joshua Wales",
+            path: "./access/Songs/Don't_Worry_-_Joshua_Wales.mp3",
+            image: "./access/Thumbnails/Dont't worry.jpeg"
+        },
+        {
+            name: "Driftwood",
+            singer: "The_Imaginary_Suitcase",
+            path: "./access/Songs/Driftwood_-_The_Imaginary_Suitcase.mp3",
+            image: "./access/Thumbnails/Driftwood.jpeg"
+        },
+        {
+            name: "Flower of September",
+            singer: "The_Tangerine_Club",
+            path: "./access/Songs/Flowers_Of_September_-_The_Tangerine_Club.mp3",
+            image: "./access/Thumbnails/Flower of September.jpeg"
+        },
+        {
+            name: "Forget About Tomorrow",
+            singer: "Kavi Jezzie Hockaday",
+            path: "./access/Songs/Forget_About_Tomorrow_-_Kavi_Jezzie_Hockaday.mp3",
+            image: "./access/Thumbnails/Forget about tomorrow.jpeg"
+        },
+        {
+            name: "If Only",
+            singer: "The Vow",
+            path: "./access/Songs/If_Only_-_The_Vow.mp3",
+            image: "./access/Thumbnails/If Only.jpeg"
+        },
+        {
+            name: "I know now",
+            singer: "Xander Black",
+            path: "./access/Songs/I_Know_Now_-_Xander_Black.mp3",
+            image: "./access/Thumbnails/I know now.jpeg"
+        },
+        {
+            name: "In Between",
+            singer: "Kinematic",
+            path: "./access/Songs/Kinematic_-_In_Between.mp3",
+            image: "./access/Thumbnails/In between.jpeg"
+        },
+        {
+            name: "I wish I knew",
+            singer: "Lip Service",
+            path: "./access/Songs/I_Wish_I_Knew_-_Lip_Service.mp3",
+            image: "./access/Thumbnails/I wish i knew.jpeg"
+        },
+        {
+            name: "L'albero della vita",
+            singer: "Simone_Roncoletta",
+            path: "./access/Songs/L'albero_della_vita_-_Simone_Roncoletta.mp3",
+            image: "./access/Thumbnails/L'albero della vita.jpeg"
+        },
+        {
+            name: "Like a Song",
+            singer: "Yonder Breaks",
+            path: "./access/Songs/Like_a_Song_-_Yonder_Breaks.mp3",
+            image: "./access/Thumbnails/Like a song.jpeg"
+        },
+        {
+            name: "Lose You",
+            singer: "EVVA x Igor Pumphonia",
+            path: "./access/Songs/Lose you EVVA_feat._Igor_Pumphonia",
+            image: "./access/Thumbnails/Lose You.jpeg"
+        },
+        {
+            name: "Lost and Found",
+            singer: "Jon Maurer",
+            path: "./access/Songs/Lost_And_Found_-_Jon_Maurer.mp3",
+            image: "./access/Thumbnails/Lost and Found.jpeg"
+        },
+        {
+            name: "Lost Balloon",
+            singer: "Tab",
+            path: "./access/Songs/Lost_Balloon_-_Tab.mp3",
+            image: "./access/Thumbnails/Lost balloon.jpeg"
+        },
+        {
+            name: "Monday 8 am",
+            singer: "Kinematic",
+            path: "./access/Songs/Kinematic_-_Monday_8am.mp3",
+            image: "./access/Thumbnails/Monday 8am.jpeg"
+        },
+        {
+            name: "Morning coffee and you",
+            singer: "The Vow",
+            path: "./access/Songs/The_Vow_-_Morning_Coffee_and_You.mp3",
+            image: "./access/Thumbnails/Moning coffee and you.jpeg"
+        },
+        {
+            name: "My Garden",
+            singer: "Michael Ellis",
+            path: "./access/Songs/My_Garden_-_Michael_Ellis.mp3",
+            image: "./access/Thumbnails/My Garden.jpeg"
+        },
+        {
+            name: "No love to Show",
+            singer: "Dayung",
+            path: "./access/Songs/No_Love_to_Show--- Dayung.mp3",
+            image: "./access/Thumbnails/No love to show.jpeg"
+        },
+        {
+            name: "Not the One to Say",
+            singer: "Cole Powell",
+            path: "./access/Songs/Not_the_One_to_Say_(I_Told_You_So)_(24-bit_Master)_-_Cole_Powell.mp3",
+            image: "./access/Thumbnails/Not the one to say.jpeg"
+        },
+        {
+            name: "Now",
+            singer: "Blooming Memories",
+            path: "./access/Songs/Now_-_Blooming_Memories.mp3",
+            image: "./access/Thumbnails/Now.jpeg"
+        },
+        {
+            name: "O Fim da Escuridão",
+            singer: "The Rooms",
+            path: "./access/Songs/O_Fim_da_Escurida_o_-_The_Rooms.mp3",
+            image: "./access/Thumbnails/O Fim da Escuridão.jpeg"
+        },
+        {
+            name: "Old Light",
+            singer: "Charles Jerred",
+            path: "./access/Songs/Old_Light_-_Charles_Jerred.mp3",
+            image: "./access/Thumbnails/Old light.jpeg"
+        },
+        {
+            name: "Orange Juice",
+            singer: "Sonia Isabel",
+            path: "./access/Songs/Orange_Juice_-_Sonia_Isabel.mp3",
+            image: "./access/Thumbnails/Orange Juice.jpeg"
+        },
+        {
+            name: "Partners in Crime",
+            singer: "Julie x Gent",
+            path: "./access/Songs/Partners_in_Crime_-_Julie_amp_Gent.mp3",
+            image: "./access/Thumbnails/Partners in Crime.jpeg"
+        },
+        {
+            name: "Polaris",
+            singer: "So far as I know x Daria Shakhova",
+            path: "./access/Songs/Polaris_(feat._Daria_Shakhova)_-_So_Far_As_I_Know.mp3",
+            image: "./access/Thumbnails/Polaris.jpeg"
+        },
+        {
+            name: "Real",
+            singer: "Michael C Jones",
+            path: "./access/Songs/Real_-_Michael_C._Jones.mp3",
+            image: "./access/Thumbnails/Real.jpeg"
+        },
+        {
+            name: "Sooner or Later",
+            singer: "Sam Reaver",
+            path: "./access/Songs/Sooner_or_Later_-_Sam_Reaver.mp3",
+            image: "./access/Thumbnails/Sooner of later.jpeg"
+        },
+        {
+            name: "Tiptoe",
+            singer: "Rivers x Leafs",
+            path: "./access/Songs/Tiptoe_-_Rivers_and_Leafs.mp3",
+            image: "./access/Thumbnails/Tiptoe.jpeg"
+        },
+        {
+            name: "Tomorrow without Guns",
+            singer: "Roy Smiles",
+            path: "./access/Songs/Tomorrow_Without_Guns_-_Roy_Smiles.mp3",
+            image: "./access/Thumbnails/Tomorrow without guns.jpeg"
+        },
+        {
+            name: "Try Me On",
+            singer: "Paxton Pennington",
+            path: "./access/Songs/Try_Me_On_-_Paxton_Pennington.mp3",
+            image: "./access/Thumbnails/Try me on.jpeg"
+        },
+        {
+            name: "Walk Tonight",
+            singer: "Charlie Mosbrook",
+            path: "./access/Songs/Walk_Tonight_-_Charlie_Mosbrook.mp3",
+            image: "./access/Thumbnails/WalkTonight.jpeg"
+        },
+        {
+            name: "Wide World Waltz",
+            singer: "Jill Zimerman",
+            path: "./access/Songs/Wide_World_Waltz_-_Jill_Zimmerman.mp3",
+            image: "./access/Thumbnails/Wide World Waltz.jpeg"
+        },
+        {
+            name: "Tantalizing Youth",
+            singer: "Social Square",
+            path: "./access/Songs/Tantalizing_Youth_-_Social_Square.mp3",
+            image: "./access/Thumbnails/Tantalizing_Youth_-_Social_Square.jpeg"
+        },
+        {
+            name: "The Deep",
+            singer: "Anitek",
+            path: "./access/Songs/The_Deep_-_Anitek.mp3",
+            image: "./access/Thumbnails/The Deep.jpeg"
+        },
+        {
+            name: "No Rest Or Endless Rest",
+            singer: "Lisofv",
+            path: "./access/Songs/No_Rest_Or_Endless_Rest_-_Lisofv.mp3",
+            image: "./access/Thumbnails/No Rest Or Endless Rest.jpeg"
+        },
     ],
     playedSongs: [],
     render: function () {
@@ -154,6 +345,7 @@ const app = {
     },
     loadCurrentSong: function () {
         heading.textContent = this.currentSong.name;
+        singer.textContent = this.currentSong.singer;
         cdThumb.style.backgroundImage = `url('${this.currentSong.image}')`;
         audio.src = `${this.currentSong.path}`;
     },

@@ -1,6 +1,7 @@
 :root {
     --primary-color: #ec1f55;
     --text-color: white;
+    --other-color: grey;
 }
 
 * {
@@ -58,6 +59,10 @@ header h4 {
     font-size: 12px;
 }
 
+header h3 {
+    color: var(--other-color);
+    font-size: 16px;
+}
 header h2 {
     color: var(--text-color);
     font-size: 20px;
